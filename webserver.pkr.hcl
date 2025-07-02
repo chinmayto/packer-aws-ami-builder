@@ -34,17 +34,17 @@ source "amazon-ebs" "al2023" {
 }
 
 build {
-  name = "learn-packer"
+  name = "ami-packer"
   sources = [
     "source.amazon-ebs.al2023"
   ]
 
   provisioner "shell" {
-    scripts = ["user_data.sh"]
+    scripts = ["install_httpd.sh"]
   }
 
-    post-processor "manifest" {
-    output = "amazon_linux2023_ami.json"
+  post-processor "manifest" {
+    output = "ami_manifest.json"
   }
 
 }
